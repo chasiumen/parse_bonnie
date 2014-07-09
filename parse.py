@@ -12,7 +12,7 @@ def ex(cmd):
 
 ####Variables######
 HOST=ex('hostname')
-infile = './out.txt '
+infile = HOST + '.out'
 base = 'cat ' + infile
 
 grep1 = '| grep -i ' + HOST + '| head -1 | '
@@ -45,15 +45,15 @@ mem2='1024'
 
 print "Checking hostanme..."
 if HOST == 'h1':
-    print HOST
+    print HOST + ' ['+ mem1 + ']'
     print "Benchmark test starts...."
-    bonnie ='bonnie -d /tmp -r ' + mem1 + ' > ' + HOST + '.out'
+    bonnie ='bonnie -d /tmp -r ' + mem1 + ' > ' + infile
     ex(bonnie)
     print "Benchmark completed"
 else:
-    print HOST
+    print HOST + ' ['+ mem2 + ']'
     print "Benchmark test starts...."
-    bonnie ='bonnie -d /tmp -r ' + mem2 + ' > ' + HOST + '.out'
+    bonnie ='bonnie -d /tmp -r ' + mem2 + ' > ' + infile
     ex(bonnie)
     print "Benchmark completed"
 
