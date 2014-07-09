@@ -1,0 +1,23 @@
+Writing a byte at a time...done
+Writing intelligently...done
+Rewriting...done
+Reading a byte at a time...done
+Reading intelligently...done
+start 'em...done...done...done...done...done...
+Create files in sequential order...done.
+Stat files in sequential order...done.
+Delete files in sequential order...done.
+Create files in random order...done.
+Stat files in random order...done.
+Delete files in random order...done.
+Version  1.97       ------Sequential Output------ --Sequential Input- --Random-
+Concurrency   1     -Per Chr- --Block-- -Rewrite- -Per Chr- --Block-- --Seeks--
+Machine        Size K/sec %CP K/sec %CP K/sec %CP K/sec %CP K/sec %CP  /sec %CP
+h1              32G   621  98 106355  17 46815   8  1358  97 117230   8 267.1  12
+Latency             30191us     878ms    5846ms   56132us     236ms     592ms
+Version  1.97       ------Sequential Create------ --------Random Create--------
+h1                  -Create-- --Read--- -Delete-- -Create-- --Read--- -Delete--
+              files  /sec %CP  /sec %CP  /sec %CP  /sec %CP  /sec %CP  /sec %CP
+                 16 22555  54 +++++ +++ +++++ +++ 32427  76 +++++ +++ +++++ +++
+Latency             34404us     657us   20735us     138us      40us   41609us
+1.97,1.97,h1,1,1404951723,32G,,621,98,106355,17,46815,8,1358,97,117230,8,267.1,12,16,,,,,22555,54,+++++,+++,+++++,+++,32427,76,+++++,+++,+++++,+++,30191us,878ms,5846ms,56132us,236ms,592ms,34404us,657us,20735us,138us,40us,41609us
