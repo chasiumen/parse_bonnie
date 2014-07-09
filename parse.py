@@ -10,7 +10,7 @@ def ex(cmd):
     return out.rstrip()
 
 
-#Variables
+####Variables######
 HOST=ex('hostname')
 infile = './out.txt '
 base = 'cat ' + infile
@@ -18,12 +18,11 @@ base = 'cat ' + infile
 grep1 = '| grep -i ' + HOST + '| head -1 | '
 grep2 = '| grep -i latency' + '| head -1 | '
 
-#seq out base command
+
+#seq out base_command
 seq_out = base + grep1
 seq_lat = base + grep2
-
-
-#seq_out
+#seq_out commands
 cout_perch=seq_out + 'awk \'{print $3 }\' ' 
 cout_block=seq_out + 'awk \'{print $5 }\' '
 cout_rw=seq_out + 'awk \'{print $7 }\' '
@@ -33,15 +32,33 @@ cout_percha_lat=seq_lat + 'awk \'{print $2 }\' '
 cout_block_lat=seq_lat + 'awk \'{print $3 }\' '
 cout_rw_lat=seq_lat + 'awk \'{print $4 }\' '
 
-#seq in
+#seq in commands
 cin_perch=seq_out + 'awk \'{print $9 }\' ' 
 cin_block=seq_out + 'awk \'{print $11 }\' '
 
 cin_percha_lat=seq_lat + 'awk \'{print $5 }\' '
 cin_block_lat=seq_lat + 'awk \'{print $ 6}\' '
 
+#bonnie test
+mem1='16384'
+mem2='1024'
 
-###OUTPUT###
+print "Checking hostanme..."
+if HOST == 'h1':
+    print HOST
+    print "Benchmark test starts...."
+    bonnie ='bonnie -d /tmp -r ' + mem1 + ' > ' + HOST + '.out'
+    ex(bonnie)
+    print "Benchmark completed"
+else:
+    print HOST
+    print "Benchmark test starts...."
+    bonnie ='bonnie -d /tmp -r ' + mem2 + ' > ' + HOST + '.out'
+    ex(bonnie)
+    print "Benchmark completed"
+
+print "parsing...."
+#RUN COMMANDS#
 #seq out char
 out_cha=ex(cout_perch)
 out_cha_lat=ex(cout_percha_lat)
@@ -61,7 +78,7 @@ in_block=ex(cin_block)
 in_block_lat=ex(cin_block_lat)
 
 
-
+### OUTPUT ###
 
 
 print HOST
